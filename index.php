@@ -23,11 +23,11 @@ if (!isset($_SESSION['username'])) {
         <form action="core/handleForms.php" method="POST">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" name="title" required>
+                <input type="text" class="form-control" name="title">
             </div>
             <div class="form-group">
                 <label for="body">Body</label>
-                <textarea class="form-control" name="body" rows="5" required></textarea>
+                <textarea class="form-control" name="body" rows="5"></textarea>
             </div>
             <div class="form-group">
                 <label for="status">Status</label>
@@ -54,10 +54,12 @@ if (!isset($_SESSION['username'])) {
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $row['title']; ?></h5>
                     <h6 class="card-subtitle mb-2 text-muted">
-                        Added by: <?php echo $row['userFullName']; ?> - 
-                        Last updated: <?php echo $row['last_updated']; ?>
+                    Added By: <?php echo $row['userFullName']; ?> - 
+                        <?php echo $row['date_added']; ?> 
+                        (Status: <?php echo $row['status']; ?>, Views: <?php echo $row['views']; ?>)
                     </h6>
                     <p class="card-text"><?php echo $row['body']; ?></p>
+                    <p class="card-text"><small>Last updated: <?php echo $row['last_updated']; ?></small></p>
                     <p class="card-text"><small>Category: <?php echo $row['category']; ?></small></p>
                     <p class="card-text"><small>Tags: <?php echo $row['tags']; ?></small></p>
                     <?php if ($_SESSION['user_id'] == $row['user_id']) { ?>
